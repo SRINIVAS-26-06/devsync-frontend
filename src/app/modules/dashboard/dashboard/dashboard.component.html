@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<div class="dashboard-container">
+  <div class="dashboard-content shadow-lg p-4 rounded bg-white">
+    <h2 class="mb-4 text-primary">Welcome, {{ user.email || 'User' }}</h2>
+
+    <div class="row text-center mb-4">
+      <div class="col-md-4">
+        <div class="card bg-info text-white mb-2 animated-card">
+          <div class="card-body">
+            <h4>{{ stats.projects }}</h4>
+            <p>Projects</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-warning text-white mb-2 animated-card">
+          <div class="card-body">
+            <h4>{{ stats.sprints }}</h4>
+            <p>Sprints</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-success text-white mb-2 animated-card">
+          <div class="card-body">
+            <h4>{{ stats.tasks }}</h4>
+            <p>Tasks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h5 class="text-secondary text-center">Task Status Overview</h5>
+      <canvas id="taskChart" width="100%"></canvas>
+    </div>
+  </div>
+</div>

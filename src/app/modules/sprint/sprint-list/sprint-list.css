@@ -1,0 +1,24 @@
+.sprint-list-container {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(to bottom right, #fef3c7, #fcd34d);
+  min-height: 90vh;
+}
+
+.sprint-list-card {
+  width: 100%;
+  max-width: 640px;
+  animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

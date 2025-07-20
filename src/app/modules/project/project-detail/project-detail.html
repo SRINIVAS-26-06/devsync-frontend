@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="detail-container">
+  <div class="project-detail-card shadow p-4 rounded bg-white">
+    <ng-container *ngIf="!loading; else loadingBlock">
+      <h2 class="mb-3">{{ project?.name }}</h2>
+      <p><strong>Description:</strong> {{ project?.description || 'No description' }}</p>
+      <p><strong>Start Date:</strong> {{ project?.startDate | date }}</p>
+      <p><strong>End Date:</strong> {{ project?.endDate | date }}</p>
+    </ng-container>
+
+    <ng-template #loadingBlock>
+      <div class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Fetching project details...</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" *ngIf="showToast">
+    <div class="toast show text-bg-danger">
+      <div class="d-flex">
+        <div class="toast-body">{{ errorMsg }}</div>
+        <button class="btn-close btn-close-white me-2 m-auto" (click)="closeToast()"></button>
+      </div>
+    </div>
+  </div>
+</div>

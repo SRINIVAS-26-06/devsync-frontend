@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="task-list-container">
+  <div class="task-list-card shadow p-4 rounded bg-white">
+    <h2 class="text-center mb-4">All Tasks</h2>
+
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p>Loading tasks...</p>
+    </div>
+
+    <div *ngIf="!loading && tasks.length === 0" class="text-center text-muted">
+      No tasks available.
+    </div>
+
+    <div *ngIf="!loading && tasks.length > 0">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of tasks">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <i class="fas fa-tasks text-success me-2"></i>
+              <strong>{{ task.title }}</strong> <br />
+              <small class="text-muted">{{ task.status }} | Project: {{ task.project?.name || '-' }}</small>
+            </div>
+            <span class="badge bg-info">{{ task.sprint?.name || 'No Sprint' }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="text-end mt-4">
+      <a routerLink="/tasks/create" class="btn btn-outline-primary">+ New Task</a>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" *ngIf="showToast">
+    <div class="toast show text-bg-danger">
+      <div class="d-flex">
+        <div class="toast-body">{{ errorMsg }}</div>
+        <button class="btn-close btn-close-white me-2 m-auto" (click)="closeToast()"></button>
+      </div>
+    </div>
+  </div>
+</div>

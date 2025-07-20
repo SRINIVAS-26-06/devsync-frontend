@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="project-container">
+  <div class="project-card shadow p-4 rounded bg-white mx-auto">
+    <h3 class="mb-4 text-center">Create New Project</h3>
+
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Project Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Enter project name"
+          [class.is-invalid]="projectForm.get('name')?.invalid && projectForm.get('name')?.touched"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          rows="3"
+          formControlName="description"
+          placeholder="Optional description..."
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        <input type="date" class="form-control" formControlName="startDate" />
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">End Date</label>
+        <input type="date" class="form-control" formControlName="endDate" />
+      </div>
+
+      <button type="submit" class="btn btn-success w-100" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+        {{ loading ? 'Creating...' : 'Create Project' }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" *ngIf="showToast">
+    <div class="toast show text-bg-{{ errorMsg ? 'danger' : 'success' }}">
+      <div class="d-flex">
+        <div class="toast-body">
+          {{ errorMsg || 'Project created successfully!' }}
+        </div>
+        <button class="btn-close btn-close-white me-2 m-auto" (click)="closeToast()"></button>
+      </div>
+    </div>
+  </div>
+</div>

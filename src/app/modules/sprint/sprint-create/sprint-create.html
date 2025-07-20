@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<div class="sprint-create-container">
+  <div class="sprint-create-card shadow bg-white p-4 rounded">
+    <h2 class="text-center mb-4">Create Sprint</h2>
+
+    <form [formGroup]="sprintForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Sprint Name</label>
+        <input type="text" class="form-control" formControlName="name" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        <input type="date" class="form-control" formControlName="startDate" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">End Date</label>
+        <input type="date" class="form-control" formControlName="endDate" required />
+      </div>
+
+      <button class="btn btn-warning w-100" type="submit" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+        {{ loading ? 'Creating...' : 'Create Sprint' }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" *ngIf="showToast">
+    <div class="toast show text-bg-danger">
+      <div class="d-flex">
+        <div class="toast-body">{{ errorMsg }}</div>
+        <button class="btn-close btn-close-white me-2 m-auto" (click)="closeToast()"></button>
+      </div>
+    </div>
+  </div>
+</div>

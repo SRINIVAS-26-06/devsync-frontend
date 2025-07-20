@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+
+<div class="sprint-list-container">
+  <div class="sprint-list-card shadow bg-white p-4 rounded">
+    <h2 class="text-center mb-4">Sprints</h2>
+
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border text-success" role="status"></div>
+      <p>Loading sprints...</p>
+    </div>
+
+    <div *ngIf="!loading && sprints.length === 0" class="text-center">
+      <p class="text-muted">No sprints available.</p>
+    </div>
+
+    <div *ngIf="!loading && sprints.length > 0">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let sprint of sprints">
+          <div class="d-flex justify-content-between">
+            <span><strong>{{ sprint.name }}</strong> ({{ sprint.startDate }} → {{ sprint.endDate }})</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="text-end mt-4">
+      <a routerLink="/sprints/create" class="btn btn-outline-success">+ New Sprint</a>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" *ngIf="showToast">
+    <div class="toast show text-bg-danger">
+      <div class="d-flex">
+        <div class="toast-body">{{ errorMsg }}</div>
+        <button class="btn-close btn-close-white me-2 m-auto" (click)="closeToast()"></button>
+      </div>
+    </div>
+  </div>
+</div>

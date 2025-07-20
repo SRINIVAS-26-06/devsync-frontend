@@ -1,0 +1,23 @@
+.project-container {
+  padding: 2rem;
+  background: linear-gradient(to top left, #f0f9ff, #e0f7fa);
+  min-height: 90vh;
+}
+
+.project-card {
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  font-size: 1.25rem;
+}
+
+.card-footer .btn {
+  font-size: 0.9rem;
+}

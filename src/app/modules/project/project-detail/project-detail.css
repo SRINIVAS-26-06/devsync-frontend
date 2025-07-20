@@ -1,0 +1,25 @@
+.detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  padding: 2rem;
+  background: linear-gradient(to bottom right, #f3f4f6, #c7d2fe);
+}
+
+.project-detail-card {
+  width: 100%;
+  max-width: 600px;
+  animation: slideIn 0.7s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

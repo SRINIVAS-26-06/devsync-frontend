@@ -1,0 +1,59 @@
+<div class="login-container">
+  <div class="login-card shadow-lg p-4 rounded">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3 input-group">
+        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Email"
+          [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        />
+      </div>
+
+      <div class="mb-3 input-group">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Password"
+          [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mt-2" [disabled]="loading">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+
+    <div class="text-center mt-3">
+      <a routerLink="/auth/register" class="link-secondary">Don’t have an account? Register</a>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div
+    class="toast-container position-fixed bottom-0 end-0 p-3"
+    *ngIf="showToast"
+    style="z-index: 1055"
+  >
+    <div class="toast show text-bg-{{ errorMsg ? 'danger' : 'success' }}">
+      <div class="d-flex">
+        <div class="toast-body">
+          {{ errorMsg || 'Login successful!' }}
+        </div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          aria-label="Close"
+          (click)="closeToast()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
