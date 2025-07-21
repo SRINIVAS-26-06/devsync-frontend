@@ -1,0 +1,53 @@
+<div class="tester-dashboard">
+  <app-navbar></app-navbar>
+
+  <div class="container py-5">
+    <h2 class="text-center mb-4 text-primary">Tester Control Panel</h2>
+
+    <div class="row g-4">
+      <!-- View Assigned Tasks -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-start border-4 border-info">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-vial me-2 text-info"></i>Assigned Tasks</h5>
+            <p class="card-text">Access and test your assigned tasks and bugs.</p>
+            <a routerLink="/tasks" class="btn btn-outline-info">View Tasks</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bug Reporting -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-start border-4 border-danger">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-bug me-2 text-danger"></i>Report Bugs</h5>
+            <p class="card-text">Report issues, bugs, and testing feedback.</p>
+            <a routerLink="/bugs/report" class="btn btn-outline-danger">Report Bug</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint Schedule -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-start border-4 border-warning">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-calendar-alt me-2 text-warning"></i>Sprint Schedule</h5>
+            <p class="card-text">Stay updated with sprint timelines and testing phases.</p>
+            <a routerLink="/sprints" class="btn btn-outline-warning">Sprint Board</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Access -->
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-start border-4 border-secondary">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-user me-2 text-secondary"></i>My Profile</h5>
+            <p class="card-text">Manage your profile and testing preferences.</p>
+            <a routerLink="/users/profile" class="btn btn-outline-secondary">View Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

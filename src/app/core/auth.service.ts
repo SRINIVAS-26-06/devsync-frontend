@@ -35,6 +35,24 @@ export class AuthService {
     );
   }
 
+  getCurrentUser(): { id: number; email: string; role: string } | null {
+  const token = this.getToken();
+  if (!token) return null;
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return {
+      id: payload?.sub,
+      email: payload?.email,
+      role: payload?.role
+    };
+  } catch (e) {
+    console.error('Failed to parse token payload', e);
+    return null;
+  }
+}
+
+
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }

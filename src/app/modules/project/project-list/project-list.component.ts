@@ -29,15 +29,23 @@ export class ProjectListComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<Project[]>('http://localhost:8080/api/projects').subscribe({
-      next: (data) => {
-        this.projects = data;
-        this.loading = false;
-      },
-      error: () => {
-        this.error = 'Failed to fetch projects.';
-        this.loading = false;
-      }
-    });
-  }
+  const token = localStorage.getItem('token');
+
+  this.http.get<Project[]>('http://localhost:8080/api/projects', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }).subscribe({
+    next: (data) => {
+      this.projects = data;
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('Fetch error:', err);
+      this.error = 'Failed to fetch projects.';
+      this.loading = false;
+    }
+  });
+}
+
 }

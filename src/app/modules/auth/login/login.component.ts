@@ -11,9 +11,8 @@ import { RouterModule } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule] // ✅ Angular modules only
+  imports: [CommonModule, ReactiveFormsModule, RouterModule]
 })
-
 export class LoginComponent {
   loginForm: FormGroup;
   errorMsg = '';
@@ -41,10 +40,32 @@ export class LoginComponent {
     const { email, password } = this.loginForm.value;
 
     this.authService.login(email, password).subscribe({
-      next: () => {
+      next: (response) => {
         this.loading = false;
         this.showToast = true;
-        setTimeout(() => this.router.navigate(['/dashboard']), 1000);
+
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+
+        const role = response.user?.role?.toUpperCase();
+
+        // 🔁 Role-based navigation
+        switch (role) {
+          case 'ADMIN':
+            this.router.navigate(['/admin-dashboard']);
+            break;
+          case 'MANAGER':
+            this.router.navigate(['/manager-dashboard']);
+            break;
+          case 'DEVELOPER':
+            this.router.navigate(['/developer-dashboard']);
+            break;
+          case 'TESTER':
+            this.router.navigate(['/tester-dashboard']);
+            break;
+          default:
+            this.router.navigate(['/dashboard']);
+        }
       },
       error: () => {
         this.loading = false;
@@ -59,7 +80,7 @@ export class LoginComponent {
     const form = document.querySelector('.login-card');
     if (form) {
       form.classList.remove('shake');
-      void (form as HTMLElement).offsetWidth; // trigger reflow
+      void (form as HTMLElement).offsetWidth;
       form.classList.add('shake');
     }
   }

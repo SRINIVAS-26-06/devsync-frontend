@@ -25,19 +25,27 @@ export class SprintListComponent implements OnInit {
   }
 
   fetchSprints(): void {
-    this.loading = true;
-    this.http.get<any[]>('http://localhost:8080/api/sprints').subscribe({
-      next: (data) => {
-        this.sprints = data;
-        this.loading = false;
-      },
-      error: () => {
-        this.errorMsg = 'Failed to load sprints.';
-        this.loading = false;
-        this.showToast = true;
-      }
-    });
-  }
+  const token = localStorage.getItem('token');
+  const options = token
+    ? { headers: { Authorization: `Bearer ${token}` } }
+    : {};
+
+  this.loading = true;
+  this.http.get<any[]>('http://localhost:8080/api/sprints', options).subscribe({
+    next: (data) => {
+      console.log('Sprints:', data);
+      this.sprints = data;
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('Error loading sprints:', err);
+      this.errorMsg = err.status === 401 ? 'Unauthorized access' : 'Failed to load sprints.';
+      this.loading = false;
+      this.showToast = true;
+    }
+  });
+}
+
 
   closeToast() {
     this.showToast = false;

@@ -10,7 +10,10 @@
           class="form-control"
           placeholder="Name"
           formControlName="name"
-          [class.is-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+          [class.is-invalid]="
+            registerForm.get('name')?.invalid &&
+            registerForm.get('name')?.touched
+          "
         />
       </div>
 
@@ -21,7 +24,10 @@
           class="form-control"
           placeholder="Email"
           formControlName="email"
-          [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          [class.is-invalid]="
+            registerForm.get('email')?.invalid &&
+            registerForm.get('email')?.touched
+          "
         />
       </div>
 
@@ -32,29 +38,59 @@
           class="form-control"
           placeholder="Password"
           formControlName="password"
-          [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          [class.is-invalid]="
+            registerForm.get('password')?.invalid &&
+            registerForm.get('password')?.touched
+          "
         />
       </div>
+      <div class="mb-3 position-relative">
+        <label for="role" class="form-label">Role</label>
+        <div class="custom-select-wrapper">
+          <select class="form-select custom-select-icon" formControlName="role">
+            <option *ngFor="let role of roles" [value]="role">
+              {{ role }}
+            </option>
+          </select>
+          <!-- <i class="fas fa-chevron-down dropdown-arrow"></i> -->
+        </div>
+      </div>
 
-      <button type="submit" class="btn btn-success w-100 mt-2" [disabled]="loading">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-        {{ loading ? 'Registering...' : 'Register' }}
+      <button
+        type="submit"
+        class="btn btn-success w-100 mt-2"
+        [disabled]="loading"
+      >
+        <span
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm me-2"
+        ></span>
+        {{ loading ? "Registering..." : "Register" }}
       </button>
     </form>
 
     <div class="text-center mt-3">
-      <a routerLink="/auth/login" class="link-secondary">Already have an account? Login</a>
+      <a routerLink="/auth/login" class="link-secondary"
+        >Already have an account? Login</a
+      >
     </div>
   </div>
 
   <!-- Toast -->
-  <div class="toast-container position-fixed bottom-0 end-0 p-3" *ngIf="showToast" style="z-index: 1055;">
+  <div
+    class="toast-container position-fixed bottom-0 end-0 p-3"
+    *ngIf="showToast"
+    style="z-index: 1055"
+  >
     <div class="toast show text-bg-{{ errorMsg ? 'danger' : 'success' }}">
       <div class="d-flex">
         <div class="toast-body">
-          {{ errorMsg || 'Registration successful! Redirecting...' }}
+          {{ errorMsg || "Registration successful! Redirecting..." }}
         </div>
-        <button class="btn-close btn-close-white me-2 m-auto" (click)="closeToast()"></button>
+        <button
+          class="btn-close btn-close-white me-2 m-auto"
+          (click)="closeToast()"
+        ></button>
       </div>
     </div>
   </div>

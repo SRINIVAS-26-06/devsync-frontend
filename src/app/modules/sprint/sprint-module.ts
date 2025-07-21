@@ -1,14 +1,10 @@
+// src/app/modules/sprint/sprint-module.ts
+
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { SprintRoutingModule } from './sprint-routing-module';
-
+import { RouterModule } from '@angular/router';
+import { SprintRoutes } from './sprint-routing-module';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    SprintRoutingModule
-  ]
+  imports: [RouterModule.forChild(SprintRoutes)]
 })
-export class SprintModule { }
+export class SprintModule {}

@@ -1,0 +1,61 @@
+<div class="manager-dashboard">
+  <app-navbar></app-navbar>
+
+  <div class="container py-5">
+    <h2 class="text-center text-primary mb-4">Project Manager Dashboard</h2>
+
+    <div class="row g-4">
+      <!-- Manage Projects -->
+      <div class="col-md-6">
+        <div class="card shadow-sm border-start border-4 border-success h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fas fa-project-diagram text-success me-2"></i> Projects
+            </h5>
+            <p class="card-text">Create and oversee all active and archived projects.</p>
+            <a routerLink="/projects" class="btn btn-outline-success">Manage Projects</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint Planning -->
+      <div class="col-md-6">
+        <div class="card shadow-sm border-start border-4 border-info h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fas fa-clock text-info me-2"></i> Sprint Planning
+            </h5>
+            <p class="card-text">Plan and manage sprint timelines and deliverables.</p>
+            <a routerLink="/sprints" class="btn btn-outline-info">Plan Sprints</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task Monitoring -->
+      <div class="col-md-6">
+        <div class="card shadow-sm border-start border-4 border-warning h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fas fa-tasks text-warning me-2"></i> Task Monitoring
+            </h5>
+            <p class="card-text">Track task assignments, deadlines, and statuses.</p>
+            <a routerLink="/tasks" class="btn btn-outline-warning">View Tasks</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Overview -->
+      <div class="col-md-6">
+        <div class="card shadow-sm border-start border-4 border-primary h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fas fa-users text-primary me-2"></i> Team Overview
+            </h5>
+            <p class="card-text">View team members, roles, and current workloads.</p>
+            <a routerLink="/users" class="btn btn-outline-primary">Manage Team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

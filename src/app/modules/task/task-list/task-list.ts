@@ -24,18 +24,25 @@ export class TaskListComponent implements OnInit {
   }
 
   fetchTasks(): void {
-    this.http.get<any[]>('http://localhost:8080/api/tasks').subscribe({
-      next: (data) => {
-        this.tasks = data;
-        this.loading = false;
-      },
-      error: () => {
-        this.errorMsg = 'Failed to load tasks.';
-        this.loading = false;
-        this.showToast = true;
-      }
-    });
-  }
+  const token = localStorage.getItem('token');
+  const options = token
+    ? { headers: { Authorization: `Bearer ${token}` } }
+    : {};
+
+  this.http.get<any[]>('http://localhost:8080/api/tasks', options).subscribe({
+    next: (data) => {
+      this.tasks = data;
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error(err); // helpful for debugging
+      this.errorMsg = 'Failed to load tasks.';
+      this.loading = false;
+      this.showToast = true;
+    }
+  });
+}
+
 
   closeToast() {
     this.showToast = false;

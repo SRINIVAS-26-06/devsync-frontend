@@ -1,10 +1,30 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+// src/app/modules/project/project-routing-module.ts
 
-const routes: Routes = [];
+import { Routes } from '@angular/router';
+import { AuthGuard } from '../../core/auth.guard';
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class ProjectRoutingModule { }
+export const ProjectRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'list',
+    pathMatch: 'full'
+  },
+  {
+    path: 'list',
+    loadComponent: () =>
+      import('./project-list/project-list.component').then(m => m.ProjectListComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'create',
+    loadComponent: () =>
+      import('./project-create/project-create.component').then(m => m.ProjectCreateComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: ':id',
+    loadComponent: () =>
+      import('./project-detail/project-detail.component').then(m => m.ProjectDetailComponent),
+    canActivate: [AuthGuard]
+  }
+];

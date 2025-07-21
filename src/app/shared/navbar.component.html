@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm px-4">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm px-4">
   <a class="navbar-brand fw-bold" routerLink="/dashboard">
     <i class="fas fa-project-diagram me-2"></i>DevSync
   </a>
@@ -40,6 +40,7 @@
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
+          (click)="$event.preventDefault()"
         >
           <i class="fas fa-user-circle me-1"></i> Account
         </a>
@@ -47,6 +48,84 @@
           <li><a class="dropdown-item" routerLink="/users/profile"><i class="fas fa-id-badge me-1"></i>Profile</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li><button class="dropdown-item" (click)="logout()"><i class="fas fa-sign-out-alt me-1"></i>Logout</button></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm px-4">
+  <a class="navbar-brand fw-bold" [routerLink]="homeRoute">
+    <i class="fas fa-project-diagram me-2"></i> DevSync
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="homeRoute">
+          <i class="fas fa-home me-1"></i>Dashboard
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'MANAGER'">
+        <a class="nav-link" routerLink="/projects">
+          <i class="fas fa-folder-open me-1"></i>Projects
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="role !== 'USER'">
+        <a class="nav-link" routerLink="/sprints">
+          <i class="fas fa-running me-1"></i>Sprints
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/tasks">
+          <i class="fas fa-tasks me-1"></i>Tasks
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="role === 'ADMIN'">
+        <a class="nav-link" routerLink="/users">
+          <i class="fas fa-users me-1"></i>Users
+        </a>
+      </li>
+
+      <li class="nav-item dropdown" [class.show]="isDropdownOpen">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          (click)="toggleDropdown(); $event.preventDefault()"
+          [attr.aria-expanded]="isDropdownOpen"
+        >
+          <i class="fas fa-user-circle me-1"></i> Account
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" [class.show]="isDropdownOpen">
+          <li>
+            <a class="dropdown-item" routerLink="/users/profile" (click)="closeDropdown()">
+              <i class="fas fa-id-badge me-1"></i> Profile
+            </a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <button class="dropdown-item" (click)="logout(); closeDropdown()">
+              <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </button>
+          </li>
         </ul>
       </li>
     </ul>

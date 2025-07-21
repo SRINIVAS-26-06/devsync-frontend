@@ -34,20 +34,26 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   fetchProject(id: string) {
-    this.loading = true;
-    this.http.get(`http://localhost:8080/api/projects/${id}`).pipe(
-      catchError(() => {
-        this.errorMsg = 'Project not found or failed to fetch.';
-        this.showToast = true;
-        return of(null);
-      })
-    ).subscribe((data) => {
-      this.loading = false;
-      if (data) {
-        this.project = data;
-      }
-    });
-  }
+  const token = localStorage.getItem('token');
+  const options = token
+    ? { headers: { Authorization: `Bearer ${token}` } }
+    : {};
+
+  this.loading = true;
+  this.http.get(`http://localhost:8080/api/projects/${id}`, options).pipe(
+    catchError(() => {
+      this.errorMsg = 'Project not found or failed to fetch.';
+      this.showToast = true;
+      return of(null);
+    })
+  ).subscribe((data) => {
+    this.loading = false;
+    if (data) {
+      this.project = data;
+    }
+  });
+}
+
 
   closeToast() {
     this.showToast = false;

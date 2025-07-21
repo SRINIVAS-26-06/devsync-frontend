@@ -1,10 +1,24 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+// src/app/modules/sprint/sprint-routing-module.ts
 
-const routes: Routes = [];
+import { Routes } from '@angular/router';
+import { AuthGuard } from '../../core/auth.guard';
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class SprintRoutingModule { }
+export const SprintRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'list',
+    pathMatch: 'full'
+  },
+  {
+    path: 'list',
+    loadComponent: () =>
+      import('./sprint-list/sprint-list').then(m => m.SprintListComponent),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'create',
+    loadComponent: () =>
+      import('./sprint-create/sprint-create').then(m => m.SprintCreateComponent),
+    canActivate: [AuthGuard]
+  }
+];

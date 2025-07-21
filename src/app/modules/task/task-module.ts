@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { TaskRoutingModule } from './task-routing-module';
-
+import { RouterModule } from '@angular/router';
+import { TaskRoutes } from './task-routing-module';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    TaskRoutingModule
-  ]
+  imports: [RouterModule.forChild(TaskRoutes)],
 })
-export class TaskModule { }
+export class TaskModule {}

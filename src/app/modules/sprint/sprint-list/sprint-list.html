@@ -17,7 +17,13 @@
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let sprint of sprints">
           <div class="d-flex justify-content-between">
-            <span><strong>{{ sprint.name }}</strong> ({{ sprint.startDate }} → {{ sprint.endDate }})</span>
+            <span>
+  <strong>{{ sprint.name }}</strong>
+  ({{ sprint.startDate }} → {{ sprint.endDate }})<br />
+  <small class="text-muted">Project: {{ sprint.project?.name || 'N/A' }}</small>
+</span>
+
+            <!-- <span><strong>{{ sprint.name }}</strong> ({{ sprint.startDate }} → {{ sprint.endDate }})</span> -->
           </div>
         </li>
       </ul>

@@ -1,0 +1,34 @@
+.developer-dashboard {
+  background: linear-gradient(to right, #f8fafc, #e0f7fa);
+  min-height: 100vh;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.card-text {
+  color: #475569;
+}
+
+.btn {
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}

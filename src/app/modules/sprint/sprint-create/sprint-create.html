@@ -20,6 +20,16 @@
         <input type="date" class="form-control" formControlName="endDate" required />
       </div>
 
+      <div class="mb-3">
+        <label class="form-label">Select Project</label>
+        <select class="form-select" formControlName="projectId" required>
+          <option value="">-- Select Project --</option>
+          <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.name }}
+          </option>
+        </select>
+      </div>
+
       <button class="btn btn-warning w-100" type="submit" [disabled]="loading">
         <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
         {{ loading ? 'Creating...' : 'Create Sprint' }}

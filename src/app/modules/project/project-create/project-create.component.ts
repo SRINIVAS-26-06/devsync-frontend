@@ -30,26 +30,48 @@ export class ProjectCreateComponent {
   }
 
   onSubmit() {
-    if (this.projectForm.invalid) {
-      this.triggerShake();
-      return;
-    }
-
-    this.loading = true;
-    this.http.post('http://localhost:8080/api/projects', this.projectForm.value).subscribe({
-      next: () => {
-        this.loading = false;
-        this.showToast = true;
-        setTimeout(() => this.router.navigate(['/projects']), 1500);
-      },
-      error: () => {
-        this.loading = false;
-        this.errorMsg = 'Failed to create project.';
-        this.showToast = true;
-        this.triggerShake();
-      }
-    });
+  if (this.projectForm.invalid) {
+    this.triggerShake();
+    return;
   }
+
+  const token = localStorage.getItem('token');
+  const userStr = localStorage.getItem('user');
+  const user = userStr ? JSON.parse(userStr) : null;
+
+  if (!user?.id) {
+    this.errorMsg = 'Invalid user session.';
+    this.showToast = true;
+    return;
+  }
+
+  // 🔁 Add ownerId to payload
+  const payload = {
+    ...this.projectForm.value,
+    ownerId: user.id
+  };
+
+  const options = token
+    ? { headers: { Authorization: `Bearer ${token}` } }
+    : {};
+
+  this.loading = true;
+  this.http.post('http://localhost:8080/api/projects', payload, options).subscribe({
+    next: () => {
+      this.loading = false;
+      this.showToast = true;
+      setTimeout(() => this.router.navigate(['/projects']), 1500);
+    },
+    error: () => {
+      this.loading = false;
+      this.errorMsg = 'Failed to create project.';
+      this.showToast = true;
+      this.triggerShake();
+    }
+  });
+}
+
+
 
   triggerShake() {
     const form = document.querySelector('.project-card');

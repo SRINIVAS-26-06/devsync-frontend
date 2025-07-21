@@ -1,0 +1,65 @@
+<div class="developer-dashboard">
+  <app-navbar></app-navbar>
+
+  <div class="container py-5">
+    <h2 class="text-center mb-4 text-primary">Developer Workspace</h2>
+
+    <div class="row g-4">
+      <!-- Assigned Tasks -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-info">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-code me-2"></i>Assigned Tasks</h5>
+            <p class="card-text">Track and manage tasks assigned to you in current sprints.</p>
+            <a routerLink="/tasks" class="btn btn-outline-info w-100">View My Tasks</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Sprints -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-warning">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-stopwatch me-2"></i>Sprint Board</h5>
+            <p class="card-text">Stay updated with sprint deadlines and task priorities.</p>
+            <a routerLink="/sprints" class="btn btn-outline-warning w-100">Sprint Overview</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Participation -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm h-100 border-start border-4 border-success">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-folder-open me-2"></i>My Projects</h5>
+            <p class="card-text">View details of projects you're actively contributing to.</p>
+            <a routerLink="/projects" class="btn btn-outline-success w-100">Explore Projects</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Repository Link -->
+      <div class="col-md-6 col-lg-6">
+        <div class="card shadow-sm h-100 border-start border-4 border-primary">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fab fa-github me-2"></i>Code Repositories</h5>
+            <p class="card-text">Access linked GitHub repositories for your current projects.</p>
+            <a href="https://github.com" target="_blank" class="btn btn-outline-primary w-100">Go to GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Stats -->
+      <div class="col-md-6 col-lg-6">
+        <div class="card shadow-sm h-100 border-start border-4 border-dark">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-chart-line me-2"></i>My Performance</h5>
+            <p class="card-text">Review your completed tasks, velocity, and active days.</p>
+            <a routerLink="/performance" class="btn btn-outline-dark w-100">View Stats</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.tester-dashboard {
+  background: linear-gradient(to bottom right, #f8fafc, #e2e8f0);
+  min-height: 100vh;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.btn {
+  border-radius: 20px;
+  font-weight: 500;
+}

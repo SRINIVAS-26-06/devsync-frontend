@@ -1,0 +1,40 @@
+/* src/app/app.css */
+
+/* Theme Colors */
+:root {
+  --primary: #3b82f6;
+  --secondary: #64748b;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #facc15;
+  --info: #38bdf8;
+  --bg-light: #f8fafc;
+  --text-dark: #1e293b;
+}
+
+/* Base Styling */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+/* Utility */
+a {
+  text-decoration: none;
+  color: var(--primary);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  border-radius: 6px;
+}
+
+/* Toast container override */
+.toast {
+  border-radius: 10px;
+  font-size: 0.95rem;
+}

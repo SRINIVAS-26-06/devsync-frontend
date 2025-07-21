@@ -1,0 +1,15 @@
+.user-list-container {
+  background: linear-gradient(to bottom right, #f0fdf4, #ccfbf1);
+  min-height: 90vh;
+  padding: 2rem 1rem;
+  border-radius: 8px;
+}
+
+.animated-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}

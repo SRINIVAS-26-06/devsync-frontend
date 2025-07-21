@@ -52,3 +52,24 @@
 .form-control:focus {
   box-shadow: 0 0 5px #10b981;
 }
+
+.custom-select-wrapper {
+  position: relative;
+}
+
+.custom-select-icon {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem; /* Space for icon */
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 65%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  font-size: 0.85rem;
+}

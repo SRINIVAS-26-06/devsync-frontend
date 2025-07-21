@@ -1,0 +1,26 @@
+.admin-dashboard {
+  background: linear-gradient(to bottom right, #f0f4f8, #e2e8f0);
+  min-height: 100vh;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.card-text {
+  color: #475569;
+}
+
+h2 {
+  color: #0f172a;
+}

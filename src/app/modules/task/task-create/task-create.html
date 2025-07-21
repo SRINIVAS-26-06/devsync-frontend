@@ -24,6 +24,36 @@
         </select>
       </div>
 
+      <div class="mb-3">
+        <label class="form-label">Sprint</label>
+        <select class="form-select" formControlName="sprintId">
+          <option value="">Select Sprint</option>
+          <option *ngFor="let sprint of sprints" [value]="sprint.id">
+            {{ sprint.name }} ({{ sprint.startDate }} → {{ sprint.endDate }})
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Assign To (optional)</label>
+        <select class="form-select" formControlName="assignedToId">
+          <option value="">Unassigned</option>
+          <option *ngFor="let user of users" [value]="user.id">
+            {{ user.name }} - {{ user.role }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Project (optional)</label>
+        <select class="form-select" formControlName="projectId">
+          <option value="">No project</option>
+          <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.name }}
+          </option>
+        </select>
+      </div>
+
       <button class="btn btn-success w-100" type="submit" [disabled]="loading">
         <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
         {{ loading ? 'Creating...' : 'Create Task' }}

@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+
+<div class="profile-container d-flex justify-content-center align-items-center">
+  <div class="card profile-card shadow-lg p-4">
+    <h3 class="text-center text-success mb-3">Your Profile</h3>
+    <p><i class="fas fa-user"></i> <strong>Name:</strong> {{ user.name || 'N/A' }}</p>
+    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ user.email }}</p>
+    <p><i class="fas fa-user-tag"></i> <strong>Role:</strong> {{ user.role }}</p>
+  </div>
+</div>

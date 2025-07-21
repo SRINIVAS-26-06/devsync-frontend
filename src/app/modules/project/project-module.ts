@@ -1,14 +1,10 @@
+// src/app/modules/project/project-module.ts
+
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { ProjectRoutingModule } from './project-routing-module';
-
+import { RouterModule } from '@angular/router';
+import { ProjectRoutes } from './project-routing-module';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    ProjectRoutingModule
-  ]
+  imports: [RouterModule.forChild(ProjectRoutes)]
 })
-export class ProjectModule { }
+export class ProjectModule {}
