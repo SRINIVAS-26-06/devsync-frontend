@@ -54,7 +54,7 @@
   </div>
 </nav> -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm px-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm px-4">
   <a class="navbar-brand fw-bold" [routerLink]="homeRoute">
     <i class="fas fa-project-diagram me-2"></i> DevSync
   </a>
@@ -80,7 +80,7 @@
         </a>
       </li>
 
-      <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'MANAGER'">
+      <li class="nav-item" *ngIf="role === 'ADMIN' || role === 'MANAGER'|| role === 'DEVELOPER'">
         <a class="nav-link" routerLink="/projects">
           <i class="fas fa-folder-open me-1"></i>Projects
         </a>

@@ -71,7 +71,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./modules/user/user-module').then(m => m.UserModule),
     canActivate: [AuthGuard, RoleGuard],
-    data: { roles: ['ADMIN'] }
+    data: { roles: ['ADMIN','MANAGER', 'DEVELOPER','TESTER','USER'] }
   },
 
   // 📁 PROJECTS (Admin & Manager)
@@ -80,7 +80,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./modules/project/project-module').then(m => m.ProjectModule),
     canActivate: [AuthGuard, RoleGuard],
-    data: { roles: ['ADMIN', 'MANAGER'] }
+    data: { roles: ['ADMIN', 'MANAGER','DEVELOPER'] }
   },
 
   // 🏃‍♂️ SPRINTS (Admin, Manager, Developer)
@@ -89,7 +89,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./modules/sprint/sprint-module').then(m => m.SprintModule),
     canActivate: [AuthGuard, RoleGuard],
-    data: { roles: ['ADMIN', 'MANAGER', 'DEVELOPER'] }
+    data: { roles: ['ADMIN', 'MANAGER', 'DEVELOPER','TESTER'] }
   },
 
   // ✅ TASKS (All authenticated users)

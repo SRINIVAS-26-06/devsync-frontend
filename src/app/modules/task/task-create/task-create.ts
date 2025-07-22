@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../../shared/navbar.component';
@@ -39,88 +39,77 @@ export class TaskCreateComponent implements OnInit {
     this.loadProjects();
   }
 
+  private getAuthHeaders(): { headers: HttpHeaders } | {} {
+    const token = localStorage.getItem('token');
+    return token
+      ? { headers: new HttpHeaders({ Authorization: `Bearer ${token}` }) }
+      : {};
+  }
+
   loadSprints(): void {
-  const token = localStorage.getItem('token');
-  const headers = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-
-  this.http.get<any[]>('http://localhost:8080/api/sprints', headers).subscribe({
-    next: (data) => this.sprints = data,
-    error: () => {
-      this.errorMsg = 'Failed to load sprints.';
-      this.showToast = true;
-    }
-  });
-}
-
+    this.http.get<any[]>('http://localhost:8080/api/sprints', this.getAuthHeaders()).subscribe({
+      next: (data) => (this.sprints = data),
+      error: () => {
+        this.errorMsg = 'Failed to load sprints.';
+        this.showToast = true;
+      }
+    });
+  }
 
   loadUsers(): void {
-  const token = localStorage.getItem('token');
-  const headers = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-
-  this.http.get<any[]>('http://localhost:8080/api/users', headers).subscribe({
-    next: (data) => this.users = data,
-    error: () => {
-      this.errorMsg = 'Failed to load users.';
-      this.showToast = true;
-    }
-  });
-}
-
+    this.http.get<any[]>('http://localhost:8080/api/users', this.getAuthHeaders()).subscribe({
+      next: (data) => (this.users = data),
+      error: () => {
+        this.errorMsg = 'Failed to load users.';
+        this.showToast = true;
+      }
+    });
+  }
 
   loadProjects(): void {
-  const token = localStorage.getItem('token');
-  const headers = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-
-  this.http.get<any[]>('http://localhost:8080/api/projects', headers).subscribe({
-    next: (data) => this.projects = data,
-    error: () => {
-      this.errorMsg = 'Failed to load projects.';
-      this.showToast = true;
-    }
-  });
-}
-
+    this.http.get<any[]>('http://localhost:8080/api/projects', this.getAuthHeaders()).subscribe({
+      next: (data) => (this.projects = data),
+      error: () => {
+        this.errorMsg = 'Failed to load projects.';
+        this.showToast = true;
+      }
+    });
+  }
 
   onSubmit(): void {
-  if (this.taskForm.invalid) return;
+    if (this.taskForm.invalid) return;
 
-  const formValue = this.taskForm.value;
+    const formValue = this.taskForm.value;
+    const payload: any = {
+      title: formValue.title,
+      description: formValue.description,
+      status: formValue.status,
+      sprint: { id: formValue.sprintId }
+    };
 
-  const payload: any = {
-    title: formValue.title,
-    description: formValue.description,
-    status: formValue.status,
-    sprint: { id: formValue.sprintId }
-  };
-
-  if (formValue.assignedToId) {
-    payload.assignedTo = { id: formValue.assignedToId };
-  }
-
-  if (formValue.projectId) {
-    payload.project = { id: formValue.projectId };
-  }
-
-  console.log('Payload being sent:', payload); // Helpful for debugging
-
-  this.loading = true;
-  const token = localStorage.getItem('token');
-  const headers = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-
-  this.http.post('http://localhost:8080/api/tasks', payload, headers).subscribe({
-    next: () => {
-      this.loading = false;
-      this.router.navigate(['/tasks']);
-    },
-    error: (err) => {
-      console.error('Task creation error:', err);
-      this.loading = false;
-      this.errorMsg = 'Failed to create task.';
-      this.showToast = true;
+    if (formValue.assignedToId) {
+      payload.assignedTo = { id: formValue.assignedToId };
     }
-  });
-}
 
+    if (formValue.projectId) {
+      payload.project = { id: formValue.projectId };
+    }
+
+    this.loading = true;
+
+    this.http.post('http://localhost:8080/api/tasks', payload, this.getAuthHeaders()).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['/tasks']);
+      },
+      error: (err) => {
+        console.error('Task creation error:', err);
+        this.loading = false;
+        this.errorMsg = 'Failed to create task.';
+        this.showToast = true;
+      }
+    });
+  }
 
   closeToast() {
     this.showToast = false;
